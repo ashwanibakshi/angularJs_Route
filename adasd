@@ -1,0 +1,416 @@
+[33mcommit 273333175c324f6cf3f05ca018de357d82b1a660[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: Ashwani Bakshi <ab324002@gmail.com>
+Date:   Wed Jan 27 22:46:39 2021 +0530
+
+    first commit
+
+[1mdiff --git a/ApplicationInsights.config b/ApplicationInsights.config[m
+[1mnew file mode 100644[m
+[1mindex 0000000..ee9ea3c[m
+[1m--- /dev/null[m
+[1m+++ b/ApplicationInsights.config[m
+[36m@@ -0,0 +1,84 @@[m
+[32m+[m[32m﻿<?xml version="1.0" encoding="utf-8"?>[m
+[32m+[m[32m<ApplicationInsights xmlns="http://schemas.microsoft.com/ApplicationInsights/2013/Settings">[m
+[32m+[m	[32m<TelemetryModules>[m
+[32m+[m		[32m<Add Type="Microsoft.ApplicationInsights.DependencyCollector.DependencyTrackingTelemetryModule, Microsoft.AI.DependencyCollector"/>[m
+[32m+[m		[32m<Add Type="Microsoft.ApplicationInsights.Extensibility.PerfCounterCollector.PerformanceCollectorModule, Microsoft.AI.PerfCounterCollector">[m
+[32m+[m			[32m<!--[m
+[32m+[m[32m      Use the following syntax here to collect additional performance counters:[m
+[32m+[m[41m      [m
+[32m+[m[32m      <Counters>[m
+[32m+[m[32m        <Add PerformanceCounter="\Process(??APP_WIN32_PROC??)\Handle Count" ReportAs="Process handle count" />[m
+[32m+[m[32m        ...[m
+[32m+[m[32m      </Counters>[m
+[32m+[m[41m      [m
+[32m+[m[32m      PerformanceCounter must be either \CategoryName(InstanceName)\CounterName or \CategoryName\CounterName[m
+[32m+[m[41m      [m
+[32m+[m[32m      Counter names may only contain letters, round brackets, forward slashes, hyphens, underscores, spaces and dots.[m
+[32m+[m[32m      You may provide an optional ReportAs attribute which will be used as the metric name when reporting counter data.[m
+[32m+[m[32m      For the purposes of reporting, metric names will be sanitized by removing all invalid characters from the resulting metric name.[m
+[32m+[m[41m      [m
+[32m+[m[32m      NOTE: performance counters configuration will be lost upon NuGet upgrade.[m
+[32m+[m[41m      [m
+[32m+[m[32m      The following placeholders are supported as InstanceName:[m
+[32m+[m[32m        ??APP_WIN32_PROC?? - instance name of the application process  for Win32 counters.[m
+[32m+[m[32m        ??APP_W3SVC_PROC?? - instance name of the application IIS worker process for IIS/ASP.NET counters.[m
+[32m+[m[32m        ??APP_CLR_PROC?? - instance name of the application CLR process for .NET counters.[m
+[32m+[m[32m      -->[m
+[32m+[m		[32m</Add>[m
+[32m+[m		[32m<Add Type="Microsoft.ApplicationInsights.WindowsServer.DeveloperModeWithDebuggerAttachedTelemetryModule, Microsoft.AI.WindowsServer"/>[m
+[32m+[m		[32m<Add Type="Microsoft.ApplicationInsights.WindowsServer.UnhandledExceptionTelemetryModule, Microsoft.AI.WindowsServer"/>[m
+[32m+[m		[32m<Add Type="Microsoft.ApplicationInsights.WindowsServer.UnobservedExceptionTelemetryModule, Microsoft.AI.WindowsServer"/>[m
+[32m+[m		[32m<Add Type="Microsoft.ApplicationInsights.Web.RequestTrackingTelemetryModule, Microsoft.AI.Web">[m
+[32m+[m			[32m<Handlers>[m
+[32m+[m				[32m<!--[m[41m [m
+[32m+[m[32m        Add entries here to filter out additional handlers:[m[41m [m
+[32m+[m[41m        [m
+[32m+[m[32m        NOTE: handler configuration will be lost upon NuGet upgrade.[m
+[32m+[m[32m        -->[m
+[32m+[m				[32m<Add>System.Web.Handlers.TransferRequestHandler</Add>[m
+[32m+[m				[32m<Add>Microsoft.VisualStudio.Web.PageInspector.Runtime.Tracing.RequestDataHttpHandler</Add>[m
+[32m+[m				[32m<Add>System.Web.StaticFileHandler</Add>[m
+[32m+[m				[32m<Add>System.Web.Handlers.AssemblyResourceLoader</Add>[m
+[32m+[m				[32m<Add>System.Web.Optimization.BundleHandler</Add>[m
+[32m+[m				[32m<Add>System.Web.Script.Services.ScriptHandlerFactory</Add>[m
+[32m+[m				[32m<Add>System.Web.Handlers.TraceHandler</Add>[m
+[32m+[m				[32m<Add>System.Web.Services.Discovery.DiscoveryRequestHandler</Add>[m
+[32m+[m				[32m<Add>System.Web.HttpDebugHandler</Add>[m
+[32m+[m			[32m</Handlers>[m
+[32m+[m		[32m</Add>[m
+[32m+[m		[32m<Add Type="Microsoft.ApplicationInsights.Web.ExceptionTrackingTelemetryModule, Microsoft.AI.Web"/>[m
+[32m+[m	[32m</TelemetryModules>[m
+[32m+[m	[32m<TelemetryChannel Type="Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.ServerTelemetryChannel, Microsoft.AI.ServerTelemetryChannel"/>[m
+[32m+[m	[32m<TelemetryProcessors>[m
+[32m+[m		[32m<Add Type="Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.AdaptiveSamplingTelemetryProcessor, Microsoft.AI.ServerTelemetryChannel">[m
+[32m+[m			[32m<MaxTelemetryItemsPerSecond>5</MaxTelemetryItemsPerSecond>[m
+[32m+[m		[32m</Add>[m
+[32m+[m	[32m</TelemetryProcessors>[m
+[32m+[m[32m<!--[m[41m [m
+[32m+[m[32m    Learn more about Application Insights configuration with ApplicationInsights.config here:[m[41m [m
+[32m+[m[32m    http://go.microsoft.com/fwlink/?LinkID=513840[m
+[32m+[m[41m    [m
+[32m+[m[32m    Note: If not present, please add <InstrumentationKey>Your Key</InstrumentationKey> to the top of this file.[m
+[32m+[m[32m  -->[m
+[32m+[m[32m<TelemetryInitializers>[m
+[32m+[m[32m<Add Type="Microsoft.ApplicationInsights.WindowsServer.AzureRoleEnvironmentTelemetryInitializer, Microsoft.AI.WindowsServer"/>[m
+[32m+[m[32m<Add Type="Microsoft.ApplicationInsights.WindowsServer.DomainNameRoleInstanceTelemetryInitializer, Microsoft.AI.WindowsServer"/>[m
+[32m+[m[32m<Add Type="Microsoft.ApplicationInsights.WindowsServer.BuildInfoConfigComponentVersionTelemetryInitializer, Microsoft.AI.WindowsServer"/>[m
+[32m+[m[32m<Add Type="Microsoft.ApplicationInsights.Web.WebTestTelemetryInitializer, Microsoft.AI.Web"/>[m
+[32m+[m[32m<Add Type="Microsoft.ApplicationInsights.Web.SyntheticUserAgentTelemetryInitializer, Microsoft.AI.Web">[m
+[32m+[m[32m<Filters>[m
+[32m+[m[32m<Add Pattern="(YottaaMonitor|BrowserMob|HttpMonitor|YandexBot|BingPreview|PagePeeker|ThumbShotsBot|WebThumb|URL2PNG|ZooShot|GomezA|Catchpoint bot|Willow Internet Crawler|Google SketchUp|Read%20Later|KTXN|Pingdom|AlwaysOn)"/>[m
+[32m+[m[32m<Add Pattern="Slurp" SourceName="Yahoo Bot"/>[m
+[32m+[m[32m<Add Pattern="(bot|zao|borg|Bot|oegp|silk|Xenu|zeal|^NING|crawl|Crawl|htdig|lycos|slurp|teoma|voila|yahoo|Sogou|CiBra|Nutch|^Java/|^JNLP/|Daumoa|Genieo|ichiro|larbin|pompos|Scrapy|snappy|speedy|spider|Spider|vortex|favicon|indexer|Riddler|scooter|scraper|scrubby|WhatWeb|WinHTTP|^voyager|archiver|Icarus6j|mogimogi|Netvibes|altavista|charlotte|findlinks|Retreiver|TLSProber|WordPress|wsr\-agent|Squrl Java|A6\-Indexer|netresearch|searchsight|http%20client|Python-urllib|dataparksearch|Screaming Frog|AppEngine-Google|YahooCacheSystem|semanticdiscovery|facebookexternalhit|Google.*/\+/web/snippet|Google-HTTP-Java-Client)"[m
+[32m+[m[32mSourceName="Spider"/>[m
+[32m+[m[32m</Filters>[m
+[32m+[m[32m</Add>[m
+[32m+[m[32m<Add Type="Microsoft.ApplicationInsights.Web.ClientIpHeaderTelemetryInitializer, Microsoft.AI.Web"/>[m
+[32m+[m[32m<Add Type="Microsoft.ApplicationInsights.Web.OperationNameTelemetryInitializer, Microsoft.AI.Web"/>[m
+[32m+[m[32m<Add Type="Microsoft.ApplicationInsights.Web.OperationCorrelationTelemetryInitializer, Microsoft.AI.Web"/>[m
+[32m+[m[32m<Add Type="Microsoft.ApplicationInsights.Web.UserTelemetryInitializer, Microsoft.AI.Web"/>[m
+[32m+[m[32m<Add Type="Microsoft.ApplicationInsights.Web.AuthenticatedUserIdTelemetryInitializer, Microsoft.AI.Web"/>[m
+[32m+[m[32m<Add Type="Microsoft.ApplicationInsights.Web.AccountIdTelemetryInitializer, Microsoft.AI.Web"/>[m
+[32m+[m[32m<Add Type="Microsoft.ApplicationInsights.Web.SessionTelemetryInitializer, Microsoft.AI.Web"/>[m
+[32m+[m[32m</TelemetryInitializers>[m
+[32m+[m[32m</ApplicationInsights>[m
+\ No newline at end of file[m
+[1mdiff --git a/Properties/AssemblyInfo.cs b/Properties/AssemblyInfo.cs[m
+[1mnew file mode 100644[m
+[1mindex 0000000..ab8a36e[m
+[1m--- /dev/null[m
+[1m+++ b/Properties/AssemblyInfo.cs[m
+[36m@@ -0,0 +1,35 @@[m
+[32m+[m[32m﻿using System.Reflection;[m
+[32m+[m[32musing System.Runtime.CompilerServices;[m
+[32m+[m[32musing System.Runtime.InteropServices;[m
+[32m+[m
+[32m+[m[32m// General Information about an assembly is controlled through the following[m[41m [m
+[32m+[m[32m// set of attributes. Change these attribute values to modify the information[m
+[32m+[m[32m// associated with an assembly.[m
+[32m+[m[32m[assembly: AssemblyTitle("angularjsdemo2")][m
+[32m+[m[32m[assembly: AssemblyDescription("")][m
+[32m+[m[32m[assembly: AssemblyConfiguration("")][m
+[32m+[m[32m[assembly: AssemblyCompany("")][m
+[32m+[m[32m[assembly: AssemblyProduct("angularjsdemo2")][m
+[32m+[m[32m[assembly: AssemblyCopyright("Copyright ©  2021")][m
+[32m+[m[32m[assembly: AssemblyTrademark("")][m
+[32m+[m[32m[assembly: AssemblyCulture("")][m
+[32m+[m
+[32m+[m[32m// Setting ComVisible to false makes the types in this assembly not visible[m[41m [m
+[32m+[m[32m// to COM components.  If you need to access a type in this assembly from[m[41m [m
+[32m+[m[32m// COM, set the ComVisible attribute to true on that type.[m
+[32m+[m[32m[assembly: ComVisible(false)][m
+[32m+[m
+[32m+[m[32m// The following GUID is for the ID of the typelib if this project is exposed to COM[m
+[32m+[m[32m[assembly: Guid("98adb5b7-9b47-4c49-9d24-9d35d2cf758f")][m
+[32m+[m
+[32m+[m[32m// Version information for an assembly consists of the following four values:[m
+[32m+[m[32m//[m
+[32m+[m[32m//      Major Version[m
+[32m+[m[32m//      Minor Version[m[41m [m
+[32m+[m[32m//      Build Number[m
+[32m+[m[32m//      Revision[m
+[32m+[m[32m//[m
+[32m+[m[32m// You can specify all the values or you can default the Revision and Build Numbers[m[41m [m
+[32m+[m[32m// by using the '*' as shown below:[m
+[32m+[m[32m[assembly: AssemblyVersion("1.0.0.0")][m
+[32m+[m[32m[assembly: AssemblyFileVersion("1.0.0.0")][m
+[1mdiff --git a/Web.Debug.config b/Web.Debug.config[m
+[1mnew file mode 100644[m
+[1mindex 0000000..2e302f9[m
+[1m--- /dev/null[m
+[1m+++ b/Web.Debug.config[m
+[36m@@ -0,0 +1,30 @@[m
+[32m+[m[32m<?xml version="1.0" encoding="utf-8"?>[m
+[32m+[m
+[32m+[m[32m<!-- For more information on using web.config transformation visit http://go.microsoft.com/fwlink/?LinkId=125889 -->[m
+[32m+[m
+[32m+[m[32m<configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">[m
+[32m+[m[32m  <!--[m
+[32m+[m[32m    In the example below, the "SetAttributes" transform will change the value of[m[41m [m
+[32m+[m[32m    "connectionString" to use "ReleaseSQLServer" only when the "Match" locator[m[41m [m
+[32m+[m[32m    finds an attribute "name" that has a value of "MyDB".[m
+[32m+[m[41m    [m
+[32m+[m[32m    <connectionStrings>[m
+[32m+[m[32m      <add name="MyDB"[m[41m [m
+[32m+[m[32m        connectionString="Data Source=ReleaseSQLServer;Initial Catalog=MyReleaseDB;Integrated Security=True"[m[41m [m
+[32m+[m[32m        xdt:Transform="SetAttributes" xdt:Locator="Match(name)"/>[m
+[32m+[m[32m    </connectionStrings>[m
+[32m+[m[32m  -->[m
+[32m+[m[32m  <system.web>[m
+[32m+[m[32m    <!--[m
+[32m+[m[32m      In the example below, the "Replace" transform will replace the entire[m[41m [m
+[32m+[m[32m      <customErrors> section of your web.config file.[m
+[32m+[m[32m      Note that because there is only one customErrors section under the[m[41m [m
+[32m+[m[32m      <system.web> node, there is no need to use the "xdt:Locator" attribute.[m
+[32m+[m[41m      [m
+[32m+[m[32m      <customErrors defaultRedirect="GenericError.htm"[m
+[32m+[m[32m        mode="RemoteOnly" xdt:Transform="Replace">[m
+[32m+[m[32m        <error statusCode="500" redirect="InternalError.htm"/>[m
+[32m+[m[32m      </customErrors>[m
+[32m+[m[32m    -->[m
+[32m+[m[32m  </system.web>[m
+[32m+[m[32m</configuration>[m
+\ No newline at end of file[m
+[1mdiff --git a/Web.Release.config b/Web.Release.config[m
+[1mnew file mode 100644[m
+[1mindex 0000000..c358444[m
+[1m--- /dev/null[m
+[1m+++ b/Web.Release.config[m
+[36m@@ -0,0 +1,31 @@[m
+[32m+[m[32m<?xml version="1.0" encoding="utf-8"?>[m
+[32m+[m
+[32m+[m[32m<!-- For more information on using web.config transformation visit http://go.microsoft.com/fwlink/?LinkId=125889 -->[m
+[32m+[m
+[32m+[m[32m<configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">[m
+[32m+[m[32m  <!--[m
+[32m+[m[32m    In the example below, the "SetAttributes" transform will change the value of[m[41m [m
+[32m+[m[32m    "connectionString" to use "ReleaseSQLServer" only when the "Match" locator[m[41m [m
+[32m+[m[32m    finds an attribute "name" that has a value of "MyDB".[m
+[32m+[m[41m    [m
+[32m+[m[32m    <connectionStrings>[m
+[32m+[m[32m      <add name="MyDB"[m[41m [m
+[32m+[m[32m        connectionString="Data Source=ReleaseSQLServer;Initial Catalog=MyReleaseDB;Integrated Security=True"[m[41m [m
+[32m+[m[32m        xdt:Transform="SetAttributes" xdt:Locator="Match(name)"/>[m
+[32m+[m[32m    </connectionStrings>[m
+[32m+[m[32m  -->[m
+[32m+[m[32m  <system.web>[m
+[32m+[m[32m    <compilation xdt:Transform="RemoveAttributes(debug)" />[m
+[32m+[m[32m    <!--[m
+[32m+[m[32m      In the example below, the "Replace" transform will replace the entire[m[41m [m
+[32m+[m[32m      <customErrors> section of your web.config file.[m
+[32m+[m[32m      Note that because there is only one customErrors section under the[m[41m [m
+[32m+[m[32m      <system.web> node, there is no need to use the "xdt:Locator" attribute.[m
+[32m+[m[41m      [m
+[32m+[m[32m      <customErrors defaultRedirect="GenericError.htm"[m
+[32m+[m[32m        mode="RemoteOnly" xdt:Transform="Replace">[m
+[32m+[m[32m        <error statusCode="500" redirect="InternalError.htm"/>[m
+[32m+[m[32m      </customErrors>[m
+[32m+[m[32m    -->[m
+[32m+[m[32m  </system.web>[m
+[32m+[m[32m</configuration>[m
+\ No newline at end of file[m
+[1mdiff --git a/Web.config b/Web.config[m
+[1mnew file mode 100644[m
+[1mindex 0000000..9dacd45[m
+[1m--- /dev/null[m
+[1m+++ b/Web.config[m
+[36m@@ -0,0 +1,32 @@[m
+[32m+[m[32m﻿<?xml version="1.0" encoding="utf-8"?>[m
+[32m+[m[32m<!--[m
+[32m+[m[32m  For more information on how to configure your ASP.NET application, please visit[m
+[32m+[m[32m  http://go.microsoft.com/fwlink/?LinkId=169433[m
+[32m+[m[32m  -->[m
+[32m+[m[32m<configuration>[m
+[32m+[m[32m  <system.web>[m
+[32m+[m[32m    <compilation debug="true" targetFramework="4.5.2"/>[m
+[32m+[m[32m    <httpRuntime targetFramework="4.5.2"/>[m
+[32m+[m[32m    <httpModules>[m
+[32m+[m[32m      <add name="ApplicationInsightsWebTracking" type="Microsoft.ApplicationInsights.Web.ApplicationInsightsHttpModule, Microsoft.AI.Web"/>[m
+[32m+[m[32m    </httpModules>[m
+[32m+[m[32m  </system.web>[m
+[32m+[m[32m  <system.codedom>[m
+[32m+[m[32m    <compilers>[m
+[32m+[m[32m      <compiler language="c#;cs;csharp" extension=".cs"[m
+[32m+[m[32m        type="Microsoft.CodeDom.Providers.DotNetCompilerPlatform.CSharpCodeProvider, Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"[m
+[32m+[m[32m        warningLevel="4" compilerOptions="/langversion:6 /nowarn:1659;1699;1701"/>[m
+[32m+[m[32m      <compiler language="vb;vbs;visualbasic;vbscript" extension=".vb"[m
+[32m+[m[32m        type="Microsoft.CodeDom.Providers.DotNetCompilerPlatform.VBCodeProvider, Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"[m
+[32m+[m[32m        warningLevel="4" compilerOptions="/langversion:14 /nowarn:41008 /define:_MYTYPE=\&quot;Web\&quot; /optionInfer+"/>[m
+[32m+[m[32m    </compilers>[m
+[32m+[m[32m  </system.codedom>[m
+[32m+[m[32m  <system.webServer>[m
+[32m+[m[32m    <validation validateIntegratedModeConfiguration="false"/>[m
+[32m+[m[32m    <modules>[m
+[32m+[m[32m      <remove name="ApplicationInsightsWebTracking"/>[m
+[32m+[m[32m      <add name="ApplicationInsightsWebTracking" type="Microsoft.ApplicationInsights.Web.ApplicationInsightsHttpModule, Microsoft.AI.Web"[m
+[32m+[m[32m        preCondition="managedHandler"/>[m
+[32m+[m[32m    </modules>[m
+[32m+[m[32m  </system.webServer>[m
+[32m+[m[32m</configuration>[m
+\ No newline at end of file[m
+[1mdiff --git a/angularjsdemo2.csproj b/angularjsdemo2.csproj[m
+[1mnew file mode 100644[m
+[1mindex 0000000..31a3fd1[m
+[1m--- /dev/null[m
+[1m+++ b/angularjsdemo2.csproj[m
+[36m@@ -0,0 +1,168 @@[m
+[32m+[m[32m﻿<?xml version="1.0" encoding="utf-8"?>[m
+[32m+[m[32m<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">[m
+[32m+[m[32m  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />[m
+[32m+[m[32m  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />[m
+[32m+[m[32m  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />[m
+[32m+[m[32m  <PropertyGroup>[m
+[32m+[m[32m    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>[m
+[32m+[m[32m    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>[m
+[32m+[m[32m    <ProductVersion>[m
+[32m+[m[32m    </ProductVersion>[m
+[32m+[m[32m    <SchemaVersion>2.0</SchemaVersion>[m
+[32m+[m[32m    <ProjectGuid>{98ADB5B7-9B47-4C49-9D24-9D35D2CF758F}</ProjectGuid>[m
+[32m+[m[32m    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>[m
+[32m+[m[32m    <OutputType>Library</OutputType>[m
+[32m+[m[32m    <AppDesignerFolder>Properties</AppDesignerFolder>[m
+[32m+[m[32m    <RootNamespace>angularjsdemo2</RootNamespace>[m
+[32m+[m[32m    <AssemblyName>angularjsdemo2</AssemblyName>[m
+[32m+[m[32m    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>[m
+[32m+[m[32m    <UseIISExpress>true</UseIISExpress>[m
+[32m+[m[32m    <IISExpressSSLPort />[m
+[32m+[m[32m    <IISExpressAnonymousAuthentication />[m
+[32m+[m[32m    <IISExpressWindowsAuthentication />[m
+[32m+[m[32m    <IISExpressUseClassicPipelineMode />[m
+[32m+[m[32m    <UseGlobalApplicationHostFile />[m
+[32m+[m[32m    <NuGetPackageImportStamp>[m
+[32m+[m[32m    </NuGetPackageImportStamp>[m
+[32m+[m[32m  </PropertyGroup>[m
+[32m+[m[32m  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">[m
+[32m+[m[32m    <DebugSymbols>true</DebugSymbols>[m
+[32m+[m[32m    <DebugType>full</DebugType>[m
+[32m+[m[32m    <Optimize>false</Optimize>[m
+[32m+[m[32m    <OutputPath>bin\</OutputPath>[m
+[32m+[m[32m    <DefineConstants>DEBUG;TRACE</DefineConstants>[m
+[32m+[m[32m    <ErrorReport>prompt</ErrorReport>[m
+[32m+[m[32m    <WarningLevel>4</WarningLevel>[m
+[32m+[m[32m  </PropertyGroup>[m
+[32m+[m[32m  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">[m
+[32m+[m[32m    <DebugType>pdbonly</DebugType>[m
+[32m+[m[32m    <Optimize>true</Optimize>[m
+[32m+[m[32m    <OutputPath>bin\</OutputPath>[m
+[32m+[m[32m    <DefineConstants>TRACE</DefineConstants>[m
+[32m+[m[32m    <ErrorReport>prompt</ErrorReport>[m
+[32m+[m[32m    <WarningLevel>4</WarningLevel>[m
+[32m+[m[32m  </PropertyGroup>[m
+[32m+[m[32m  <ItemGroup>[m
+[32m+[m[32m    <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">[m
+[32m+[m[32m      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>[m
+[32m+[m[32m      <Private>True</Private>[m
+[32m+[m[32m    </Reference>[m
+[32m+[m[32m    <Reference Include="Microsoft.AI.DependencyCollector, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">[m
+[32m+[m[32m      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.0.0\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>[m
+[32m+[m[32m      <Private>True</Private>[m
+[32m+[m[32m    </Reference>[m
+[32m+[m[32m    <Reference Include="Microsoft.AI.PerfCounterCollector, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">[m
+[32m+[m[32m      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.0.0\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>[m
+[32m+[m[32m      <Private>True</Private>[m
+[32m+[m[32m    </Reference>[m
+[32m+[m[32m    <Reference Include="Microsoft.AI.ServerTelemetryChannel, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">[m
+[32m+[m[32m      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.0.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>[m
+[32m+[m[32m      <Private>True</Private>[m
+[32m+[m[32m    </Reference>[m
+[32m+[m[32m    <Reference Include="Microsoft.AI.Web, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">[m
+[32m+[m[32m      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.0.0\lib\net45\Microsoft.AI.Web.dll</HintPath>[m
+[32m+[m[32m      <Private>True</Private>[m
+[32m+[m[32m    </Reference>[m
+[32m+[m[32m    <Reference Include="Microsoft.AI.WindowsServer, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">[m
+[32m+[m[32m      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.0.0\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>[m
+[32m+[m[32m      <Private>True</Private>[m
+[32m+[m[32m    </Reference>[m
+[32m+[m[32m    <Reference Include="Microsoft.ApplicationInsights, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">[m
+[32m+[m[32m      <HintPath>..\packages\Microsoft.ApplicationInsights.2.0.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>[m
+[32m+[m[32m      <Private>True</Private>[m
+[32m+[m[32m    </Reference>[m
+[32m+[m[32m    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">[m
+[32m+[m[32m      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>[m
+[32m+[m[32m      <Private>True</Private>[m
+[32m+[m[32m    </Reference>[m
+[32m+[m[32m    <Reference Include="Microsoft.CSharp" />[m
+[32m+[m[32m    <Reference Include="System.Web.DynamicData" />[m
+[32m+[m[32m    <Reference Include="System.Web.Entity" />[m
+[32m+[m[32m    <Reference Include="System.Web.ApplicationServices" />[m
+[32m+[m[32m    <Reference Include="System.ComponentModel.DataAnnotations" />[m
+[32m+[m[32m    <Reference Include="System" />[m
+[32m+[m[32m    <Reference Include="System.Data" />[m
+[32m+[m[32m    <Reference Include="System.Core" />[m
+[32m+[m[32m    <Reference Include="System.Data.DataSetExtensions" />[m
+[32m+[m[32m    <Reference Include="System.Web.Extensions" />[m
+[32m+[m[32m    <Reference Include="System.Xml.Linq" />[m
+[32m+[m[32m    <Reference Include="System.Drawing" />[m
+[32m+[m[32m    <Reference Include="System.Web" />[m
+[32m+[m[32m    <Reference Include="System.Xml" />[m
+[32m+[m[32m    <Reference Include="System.Configuration" />[m
+[32m+[m[32m    <Reference Include="System.Web.Services" />[m
+[32m+[m[32m    <Reference Include="System.EnterpriseServices" />[m
+[32m+[m[32m  </ItemGroup>[m
+[32m+[m[32m  <ItemGroup>[m
+[32m+[m[32m    <Content Include="app\views\HomePage.html" />[m
+[32m+[m[32m    <Content Include="packages.config" />[m
+[32m+[m[32m    <Content Include="ApplicationInsights.config">[m
+[32m+[m[32m      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>[m
+[32m+[m[32m    </Content>[m
+[32m+[m[32m    <Content Include="scripts\angular-mocks.js" />[m
+[32m+[m[32m    <Content Include="scripts\angular-route.js" />[m
+[32m+[m[32m    <Content Include="scripts\angular-route.min.js" />[m
+[32m+[m[32m    <Content Include="scripts\angular.js" />[m
+[32m+[m[32m    <Content Include="scripts\angular.min.js.map" />[m
+[32m+[m[32m    <Content Include="scripts\angular-route.min.js.map" />[m
+[32m+[m[32m    <None Include="Web.Debug.config">[m
+[32m+[m[32m      <DependentUpon>Web.config</DependentUpon>[m
+[32m+[m[32m    </None>[m
+[32m+[m[32m    <None Include="Web.Release.config">[m
+[32m+[m[32m      <DependentUpon>Web.config</DependentUpon>[m
+[32m+[m[32m    </None>[m
+[32m+[m[32m  </ItemGroup>[m
+[32m+[m[32m  <ItemGroup>[m
+[32m+[m[32m    <Content Include="app\appRoute.js" />[m
+[32m+[m[32m    <Content Include="app\controller\demoController.js" />[m
+[32m+[m[32m    <Content Include="app\views\FrontOne.html" />[m
+[32m+[m[32m    <Content Include="index.html" />[m
+[32m+[m[32m    <Content Include="scripts\ai.0.22.9-build00167.js" />[m
+[32m+[m[32m    <Content Include="scripts\ai.0.22.9-build00167.min.js" />[m
+[32m+[m[32m    <Content Include="scripts\angular.min.js" />[m
+[32m+[m[32m    <Content Include="Web.config" />[m
+[32m+[m[32m  </ItemGroup>[m
+[32m+[m[32m  <ItemGroup>[m
+[32m+[m[32m    <Compile Include="Properties\AssemblyInfo.cs" />[m
+[32m+[m[32m  </ItemGroup>[m
+[32m+[m[32m  <ItemGroup />[m
+[32m+[m[32m  <PropertyGroup>[m
+[32m+[m[32m    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>[m
+[32m+[m[32m    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>[m
+[32m+[m[32m  </PropertyGroup>[m
+[32m+[m[32m  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />[m
+[32m+[m[32m  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />[m
+[32m+[m[32m  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />[m
+[32m+[m[32m  <ProjectExtensions>[m
+[32m+[m[32m    <VisualStudio>[m
+[32m+[m[32m      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">[m
+[32m+[m[32m        <WebProjectProperties>[m
+[32m+[m[32m          <UseIIS>True</UseIIS>[m
+[32m+[m[32m          <AutoAssignPort>True</AutoAssignPort>[m
+[32m+[m[32m          <DevelopmentServerPort>57334</DevelopmentServerPort>[m
+[32m+[m[32m          <DevelopmentServerVPath>/</DevelopmentServerVPath>[m
+[32m+[m[32m          <IISUrl>http://localhost:57334/</IISUrl>[m
+[32m+[m[32m          <NTLMAuthentication>False</NTLMAuthentication>[m
+[32m+[m[32m          <UseCustomServer>False</UseCustomServer>[m
+[32m+[m[32m          <CustomServerUrl>[m
+[32m+[m[32m          </CustomServerUrl>[m
+[32m+[m[32m          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>[m
+[32m+[m[32m        </WebProjectProperties>[m
+[32m+[m[32m      </FlavorProperties>[m
+[32m+[m[32m    </VisualStudio>[m
+[32m+[m[32m  </ProjectExtensions>[m
+[32m+[m[32m  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">[m
+[32m+[m[32m    <PropertyGroup>[m
+[32m+[m[32m      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>[m
+[32m+[m[32m    </PropertyGroup>[m
+[32m+[m[32m    <Error Condition="!Exists('..\packages\Microsoft.N
