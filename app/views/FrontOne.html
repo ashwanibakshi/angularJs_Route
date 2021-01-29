@@ -1,8 +1,18 @@
-﻿
-<div>
-     {{message}}
-     10+20={{10+20}}
-</div><br>
+﻿<div class="card">
+  <div class="card-body">
+     <form>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Email address</label>
+    <input type="text" class="form-control"  ng-model="user.name" required>
+  </div>
+  <button type="submit" class="btn btn-primary" ng-click="add(user)" ng-disabled="!user.name">Submit</button>
+   </form>
+  </div>
+</div>
 
-<button data-ng-click="redirect()">click</button>
+<div ng-show="uData"> 
+   <p ng-repeat="a in uData">
+       {{a.name}}  <button ng-click="del(a.name)">delete</button>
+   </p>
+</div>
 
